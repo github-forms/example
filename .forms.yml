@@ -1,12 +1,14 @@
 title: My form
 output:
-  format: commit  # PR / Issue
+  format: issue  # PR / Issue / Commit
   file: data.csv
   branch: main
 fields:
-  - name: Name
+  - name: name
+    label: Name
     validation:
       - type: length
         min: 1
-  - name: E-mail
+  - name: email
+    label: E-mail
     validation: email
