@@ -30,13 +30,11 @@ jobs:
 
           python -c "
 
+          import sys
+          import json
 
-import sys
-import json
-
-context = json.load(open(sys.argv[1]))
-print(context['event']['issue'])
-
+          context = json.load(open(sys.argv[1]))
+          print(context['event']['issue'])
 
           " /tmp/context
 
