@@ -30,13 +30,15 @@ jobs:
 
           python -c "
 
-            import sys
-            import json
 
-            context = json.load(open(sys.argv[1]))
-            print(context['event']['issue'])
+import sys
+import json
 
-          " /tmp/context /tmp/issue /tmp/repository /tmp/sender
+context = json.load(open(sys.argv[1]))
+print(context['event']['issue'])
+
+
+          " /tmp/context
 
       # - run: npm run build
 
