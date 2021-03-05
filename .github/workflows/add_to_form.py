@@ -5,7 +5,7 @@ import json
 import pandas as pd
 import numpy as np
 
-config = yaml.load(open('./.forms.yml'))
+config = yaml.safe_load(open('./.forms.yml'))
 context = json.load(open(sys.argv[1]))
 
 def typetodtype(t):

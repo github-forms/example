@@ -33,6 +33,12 @@ jobs:
           echo $GITHUB_CONTEXT > /tmp/context
           python ./.github/workflows/add_to_form.py /tmp/context
 
+      - name: Persist
+        run: |
+          git add data.csv
+          git commit -m "Submit answer"
+          git push origin main
+
       # - run: npm run build
 
       # - name: Deploy
