@@ -14,7 +14,12 @@ jobs:
 
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.x'
+          python-version: "3.x"
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install yaml pandas numpy
 
       - name: Dump GitHub context
         env:
