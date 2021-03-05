@@ -25,18 +25,8 @@ jobs:
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
-
           echo $GITHUB_CONTEXT > /tmp/context
-
-          python -c "
-
-          import sys
-          import json
-
-          context = json.load(open(sys.argv[1]))
-          print(context['event']['issue'])
-
-          " /tmp/context
+          python ./.github/workflows/add_to_form.py /tmp/context
 
       # - run: npm run build
 

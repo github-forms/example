@@ -6,9 +6,17 @@ output:
 fields:
   - name: name
     label: Name
+    type: text
     validation:
       - type: length
         min: 1
   - name: email
     label: E-mail
+    type: text
     validation: email
+  - name: age
+    label: Age
+    type: number
+    validation:
+      - type: gt
+        min: 18
