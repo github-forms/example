@@ -35,6 +35,8 @@ jobs:
 
       - name: Persist
         run: |
+          git config --global user.email "bot@octo-forms.io"
+          git config --global user.name "Octo Forms bot"
           git add data.csv
           git commit -m "Submit answer"
           git push origin main
