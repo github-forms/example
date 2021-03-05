@@ -11,14 +11,41 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Use Node.js 15.x
-        uses: actions/setup-node@v1
+
+      - uses: actions/setup-python@v2
         with:
-          node-version: 15.x
+          python-version: '3.x'
+
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: echo "$GITHUB_CONTEXT"
+
+      - name: Add to form file
+        env:
+          GITHUB_ISSUE: ${{ toJSON(github.event.issue) }}
+          GITHUB_REPOSITORY: ${{ toJSON(github.event.repository) }}
+          GITHUB_SENDER: ${{ toJSON(github.event.sender) }}
+        run: |
+
+          echo $GITHUB_ISSUE > /tmp/issue
+          echo $GITHUB_REPOSITORY > /tmp/repository
+          echo $GITHUB_SENDER > /tmp/sender
+
+          python -c "
+
+          import sys
+          import json
+
+          issue = json.load(open(sys.argv[1]))
+          repository = json.load(open(sys.argv[2]))
+          sender = json.load(open(sys.argv[3]))
+
+          print(issue)
+          print(repository)
+          print(sender)
+
+          " /tmp/issue /tmp/repository /tmp/sender
 
       # - run: npm run build
       # - name: Deploy
