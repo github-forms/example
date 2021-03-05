@@ -28,6 +28,7 @@ jobs:
           GITHUB_SENDER: ${{ toJSON(github.event.sender) }}
         run: |
 
+          echo $GITHUB_CONTEXT > /tmp/context
           echo $GITHUB_ISSUE > /tmp/issue
           echo $GITHUB_REPOSITORY > /tmp/repository
           echo $GITHUB_SENDER > /tmp/sender
@@ -41,15 +42,17 @@ jobs:
           import sys
           import json
 
-          issue = json.load(open(sys.argv[1]))
-          repository = json.load(open(sys.argv[2]))
-          sender = json.load(open(sys.argv[3]))
+          context = json.load(open(sys.argv[1]))
+          issue = json.load(open(sys.argv[2]))
+          repository = json.load(open(sys.argv[3]))
+          sender = json.load(open(sys.argv[4]))
 
+          print(context)
           print(issue)
           print(repository)
           print(sender)
 
-          " /tmp/issue /tmp/repository /tmp/sender
+          " /tmp/context /tmp/issue /tmp/repository /tmp/sender
 
       # - run: npm run build
       # - name: Deploy
