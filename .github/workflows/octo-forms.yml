@@ -32,6 +32,10 @@ jobs:
           echo $GITHUB_REPOSITORY > /tmp/repository
           echo $GITHUB_SENDER > /tmp/sender
 
+          cat /tmp/issue
+          cat /tmp/repository
+          cat /tmp/sender
+
           python -c "
 
           import sys
