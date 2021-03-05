@@ -23,38 +23,23 @@ jobs:
 
       - name: Add to form file
         env:
-          GITHUB_ISSUE: ${{ toJSON(github.event.issue) }}
-          GITHUB_REPOSITORY: ${{ toJSON(github.event.repository) }}
-          GITHUB_SENDER: ${{ toJSON(github.event.sender) }}
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
         run: |
 
           echo $GITHUB_CONTEXT > /tmp/context
-          echo $GITHUB_ISSUE > /tmp/issue
-          echo $GITHUB_REPOSITORY > /tmp/repository
-          echo $GITHUB_SENDER > /tmp/sender
-
-          cat /tmp/issue
-          cat /tmp/repository
-          cat /tmp/sender
 
           python -c "
 
-          import sys
-          import json
+            import sys
+            import json
 
-          context = json.load(open(sys.argv[1]))
-          issue = json.load(open(sys.argv[2]))
-          repository = json.load(open(sys.argv[3]))
-          sender = json.load(open(sys.argv[4]))
-
-          print(context)
-          print(issue)
-          print(repository)
-          print(sender)
+            context = json.load(open(sys.argv[1]))
+            print(context['event']['issue'])
 
           " /tmp/context /tmp/issue /tmp/repository /tmp/sender
 
       # - run: npm run build
+
       # - name: Deploy
       #   uses: peaceiris/actions-gh-pages@v3
       #   with:
