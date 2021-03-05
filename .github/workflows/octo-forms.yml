@@ -41,10 +41,5 @@ jobs:
           git commit -m "Submit answer"
           git push origin main
 
-      # - run: npm run build
-
-      # - name: Deploy
-      #   uses: peaceiris/actions-gh-pages@v3
-      #   with:
-      #     github_token: ${{ secrets.GITHUB_TOKEN }}
-      #     publish_dir: ./dist
+      - name: Close Issue
+        uses: peter-evans/close-issue@v1
